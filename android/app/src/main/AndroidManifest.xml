@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="f.p.crud">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="firestore_crud_with_provider">

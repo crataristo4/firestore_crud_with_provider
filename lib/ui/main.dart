@@ -1,18 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestore_crud_with_provider/model/books.dart';
 import 'package:firestore_crud_with_provider/provider/books_provider.dart';
+import 'package:firestore_crud_with_provider/provider/name_provider.dart';
+import 'package:firestore_crud_with_provider/provider/postprovider.dart';
+import 'package:firestore_crud_with_provider/provider/user_provider.dart';
 import 'package:firestore_crud_with_provider/services/firestoreService.dart';
-import 'package:firestore_crud_with_provider/ui/bookings.dart';
+import 'package:firestore_crud_with_provider/ui/addNames.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(WOO());
 }
 
-class MyApp extends StatelessWidget {
+class WOO extends StatelessWidget {
   // This widget is the root of your application.
 
   @override
@@ -21,8 +24,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => BookProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => PostProvider()),
+        ChangeNotifierProvider(create: (context) => NameProvider()),
         StreamProvider<List<Books>>.value(
             value: firestore.getBooks(), initialData: []),
+
+        // StreamProvider<List<Posts>>.value(value: PostProvider(), initialData: [])
       ],
       child: MaterialApp(
         title: 'Firestore provider',
@@ -38,7 +46,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: Bookings(),
+        home: AddNewName(),
       ),
     );
   }
