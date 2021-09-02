@@ -46,7 +46,7 @@ class WOO extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: AddNewName(),
+        home: Bookings(),
       ),
     );
   }
